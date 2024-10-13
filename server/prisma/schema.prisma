@@ -1,0 +1,127 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int      @id @default(autoincrement())
+  email       String   @unique
+  password    String
+  name        String
+  telephone   String
+  created_at  DateTime @default(now())
+  modified_at DateTime @updatedAt
+  is_admin    Boolean  @default(false)
+
+  user_address UserAddress[]
+  user_payment UserPayment[]
+}
+
+model UserAddress {
+  id            Int     @id @default(autoincrement())
+  user_id       Int
+  address_line1 String
+  address_line2 String?
+  city          String
+  postal_code   String
+  country       String
+  telephone     String?
+  mobile        String?
+
+  user User @relation(fields: [user_id], references: [id])
+}
+
+model UserPayment {
+  id           Int      @id @default(autoincrement())
+  user_id      Int
+  payment_type String
+  provider     String
+  account_no   Int
+  expiry       DateTime
+
+  user User @relation(fields: [user_id], references: [id])
+}
+
+model Product {
+  id              Int       @id @default(autoincrement())
+  name            String
+  desc            String
+  SKU             String
+  category_id     Int
+  sub_category_id Int? // Relationship to ProductSubCategory
+  inventory_id    Int
+  price           Float
+  discount_id     Int?
+  images          String[] // New field to store an array of image URLs or paths
+  created_at      DateTime  @default(now())
+  modified_at     DateTime  @updatedAt
+  deleted_at      DateTime?
+
+  category    ProductCategory     @relation(fields: [category_id], references: [id])
+  subCategory ProductSubCategory? @relation(fields: [sub_category_id], references: [id]) // Optional relationship
+  inventory   ProductInventory    @relation(fields: [inventory_id], references: [id])
+  discount    Discount?           @relation(fields: [discount_id], references: [id])
+
+  @@index([category_id])
+  @@index([sub_category_id])
+  @@index([inventory_id])
+  @@index([discount_id])
+}
+
+model ProductCategory {
+  id          Int       @id @default(autoincrement())
+  name        String
+  desc        String
+  created_at  DateTime  @default(now())
+  modified_at DateTime  @updatedAt
+  deleted_at  DateTime?
+
+  products      Product[]
+  subCategories ProductSubCategory[] // Relationship with ProductSubCategory
+}
+
+model ProductSubCategory {
+  id          Int       @id @default(autoincrement())
+  name        String
+  desc        String
+  category_id Int
+  created_at  DateTime  @default(now())
+  modified_at DateTime  @updatedAt
+  deleted_at  DateTime?
+
+  category ProductCategory @relation(fields: [category_id], references: [id])
+  products Product[]
+}
+
+model ProductInventory {
+  id          Int       @id @default(autoincrement())
+  quantity    Int
+  created_at  DateTime  @default(now())
+  modified_at DateTime  @updatedAt
+  deleted_at  DateTime?
+
+  products Product[]
+}
+
+model Discount {
+  id               Int       @id @default(autoincrement())
+  name             String
+  desc             String
+  discount_percent Float
+  active           Boolean
+  created_at       DateTime  @default(now())
+  modified_at      DateTime  @updatedAt
+  deleted_at       DateTime?
+
+  products Product[]
+}
