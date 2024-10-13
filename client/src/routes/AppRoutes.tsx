@@ -1,9 +1,9 @@
 
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 // import EditProfile from '../pages/EditProfile';
-import { Login, Signin, Landing, CreateProduct, ProductPage } from '../pages';
+// import { Login, Signin, Landing, CreateProduct, ProductPage } from '../pages';
 import ProtectedRoute from './ProtectedRoute';
-import { useAuth } from '../auth/AuthProvider';
+// import { useAuth } from '../auth/AuthProvider';
 
 export default function AppRoutes() {
     const { token } = useAuth();
