@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-import {router as authsRouter}  from './routes/auths';
+import {router as authsRouter, DatabaseConnection}  from './routes/auths';
 app.use('/auths', authsRouter);
 
 // Define the server port
