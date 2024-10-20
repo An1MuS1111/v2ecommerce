@@ -39,7 +39,7 @@ model UserAddress {
   telephone     String?
   mobile        String?
 
-  user User @relation(fields: [user_id], references: [id])
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
 
 model UserPayment {
@@ -50,7 +50,7 @@ model UserPayment {
   account_no   Int
   expiry       DateTime
 
-  user User @relation(fields: [user_id], references: [id])
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
 
 model Product {
