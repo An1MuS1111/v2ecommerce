@@ -1,7 +1,7 @@
 import axiosInstance from "../../axiosInstance/axiosInstance";
 import { useState, useEffect } from "react";
 
-const Table = () => {
+const TableLayout = () => {
     const [data, setData] = useState([]);
 
     // Get the headers dynamically from the keys of the first object
@@ -33,7 +33,7 @@ const Table = () => {
                             </th>
                         ))}
                         <th scope="col" className="px-6 py-3">
-                            <span className="sr-only">Edit</span>
+                            <span className="">Edit</span>
                         </th>
                     </tr>
                 </thead>
@@ -93,4 +93,4 @@ const Table = () => {
     );
 };
 
-export default Table;
+export default TableLayout;
