@@ -1,6 +1,6 @@
 import { useState } from "react";
 // import Header from "../components/Header/index";
-// import Sidebar from "../components/Sidebar/index";
+import Sidebar from "../components/Sidebar/index.jsx";
 
 const DefaultLayout = ({ children }) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -10,11 +10,11 @@ const DefaultLayout = ({ children }) => {
             {/* <!-- ===== Page Wrapper Start ===== --> */}
             <div className="flex h-screen overflow-hidden">
                 {/* <!-- ===== Sidebar Start ===== --> */}
-                {/* <Sidebar
+                <Sidebar
                     sidebarOpen={sidebarOpen}
                     setSidebarOpen={setSidebarOpen}
-                /> */}
-                Sidebar
+                />
+                {/* Sidebar */}
                 {/* <!-- ===== Sidebar End ===== --> */}
                 {/* <!-- ===== Content Area Start ===== --> */}
                 <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">

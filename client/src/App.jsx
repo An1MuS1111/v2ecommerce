@@ -1,7 +1,9 @@
-import "./App.css";
-import TableLayout from "./components/TableLayout";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+
+
+
+import TableLayout from "./components/TableLayout";
 import Loader from "./common/Loader";
 import DefaultLayout from "./layout/DefaultLayout";
 
