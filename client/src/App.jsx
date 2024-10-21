@@ -1,8 +1,9 @@
 import "./App.css";
-import TableLayout from "./views/components/TableLayout";
+import TableLayout from "./components/TableLayout";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loader from "./common/Loader";
+import DefaultLayout from "./layout/DefaultLayout";
 
 // import AuthProvider from "./auth/AuthProvider";
 // import { BrowserRouter as Router } from "react-router-dom";
@@ -29,9 +30,9 @@ function App() {
         //     </Router>
         // </AuthProvider>
 
-        <>
+        <DefaultLayout>
             <TableLayout />
-        </>
+        </DefaultLayout>
     );
 }
 

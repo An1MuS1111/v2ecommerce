@@ -1,4 +1,4 @@
-import axiosInstance from "../../axiosInstance/axiosInstance";
+import axiosInstance from "../axiosInstance/axiosInstance";
 import { useState, useEffect } from "react";
 
 const TableLayout = () => {
